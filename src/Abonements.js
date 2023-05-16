@@ -1,6 +1,6 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-import { CardBody, CardHeader, CardTitle, Button } from "reactstrap";
+import { CardBody, CardHeader, CardTitle, Button, CardImg } from "reactstrap";
 
 const Abonements = () => {
   const subscriptions = [
@@ -73,6 +73,7 @@ const Abonements = () => {
 <Card>
       <CardHeader className="CardHeader"> <div>{abonement.title}</div> <div style={{textAlign: 'right', alignItems:'right', justifyContent:'right', display: 'inline-'}}>{abonement.price} руб.</div></CardHeader>
           <CardBody>
+            <CardImg src={`http://localhost:8081/photo/1`}/>
               <CardTitle>занятий: {abonement.sessions}</CardTitle>
               <CardTitle>период: {abonement.period}</CardTitle>
               <CardTitle>направлений: {abonement.directions}</CardTitle>

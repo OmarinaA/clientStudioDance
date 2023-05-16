@@ -9,10 +9,16 @@ import Teachers from './Teachers';
 import Abonements from './Abonements';
 import Registration from './Registration';
 import Login from './Login';
-import Profile from './Profile';
 import Modern from './Modern';
 import Ballet from './Ballet';
 import Stretching from './Stretching';
+import ProfilePage from './ProfilePage';
+import Admin from './Admin';
+import ProductList from './ProductList';
+import DanceForm from './CreateDirection';
+import SubscriptionForm from './CreateAbonement';
+import TeacherForm from "./CreateTeacher";
+
 
 const App = () => {
   return(
@@ -30,10 +36,18 @@ const App = () => {
 <Route path='/Abonements' element={<Abonements/>}/>
 <Route path='/Registration' element={<Registration/>}/>
 <Route path='/Login' element={<Login/>}/>
-<Route path='/Profile' element={<Profile/>}/>
 <Route path='/Modern' element={<Modern/>}/>
 <Route path='/Ballet' element={<Ballet/>}/>
 <Route path='/Stretching' element={<Stretching/>}/>
+<Route path='/ProfilePage' element={<ProfilePage/>}/>
+<Route path='/Admin' element={<Admin/>}/>
+<Route path='/ProductList' element={<ProductList/>}/>
+<Route path='/DanceForm' element={<DanceForm/>}/>
+<Route path='/SubscriptionForm' element={<SubscriptionForm/>}/>
+<Route path='/TeacherForm' element={<TeacherForm/>}/>
+
+
+
 </Routes>
 </div>
 </Router>

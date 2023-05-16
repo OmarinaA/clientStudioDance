@@ -1,94 +1,103 @@
 import React, { useState } from 'react';
 import { Label, Form, FormGroup, Button, Input } from 'reactstrap';
 import AuthService from './services/Auth.service';
-import {Modal, ModalHeader} from 'reactstrap';
-
-
+import { Modal, ModalHeader } from 'reactstrap';
 
 const Registration = () => {
-  const [username, setName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [login, setLogin] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [nameInvalid, setNameInvalid] = useState(false);
-  const [loginInvalid, setLoginInvalid] = useState(false);
-  const [phoneInvalid, setPhoneInvalid] = useState(false);
-  const [emailInvalid, setEmailInvalid] = useState(false);
-  const [passwordInvalid, setPasswordInvalid] = useState(false);
-  const [toggle, setToggle] = useState(false);
+    const [username, setName] = useState('');
+    const [phone, setPhone] = useState('');
+    const [login, setLogin] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [nameInvalid, setNameInvalid] = useState(false);
+    const [loginInvalid, setLoginInvalid] = useState(false);
+    const [phoneInvalid, setPhoneInvalid] = useState(false);
+    const [emailInvalid, setEmailInvalid] = useState(false);
+    const [passwordInvalid, setPasswordInvalid] = useState(false);
+    const [toggle, setToggle] = useState(false);
 
+    const tagle = () => {
+        setToggle(!toggle);
+    };
 
-  const tagle=() =>{
-    setToggle(!toggle)
-  }
+    const onRegistration = async () => {
+        setNameInvalid(false);
+        setLoginInvalid(false);
+        setPhoneInvalid(false);
+        setEmailInvalid(false);
+        setPasswordInvalid(false);
 
-  const onRegistration = async () => {
-    setNameInvalid(false);
-    setLoginInvalid(false);
-    setPhoneInvalid(false);
-    setEmailInvalid(false);
-    setPasswordInvalid(false);
+        let isValid = true;
 
-    let isValid = true;
+        if (!login || login.length < 3) {
+            setLoginInvalid(true);
+            isValid = false;
+        }
+        if (!email || !email.includes('@') || !email.includes('.')) {
+            setEmailInvalid(true);
+            isValid = false;
+        }
+        if (!phone || !phone.match(/^((\+7|7|8)+([0-9]){10})$/)) {
+            setPhoneInvalid(true);
+            isValid = false;
+        }
+        if (!password || password.length < 6) {
+            setPasswordInvalid(true);
+            isValid = false;
+        }
 
-    if (!login || login.length < 3) {
-      setLoginInvalid(true);
-      isValid = false;
-    }
-    if (!email || !email.includes('@') || !email.includes('.')) {
-      setEmailInvalid(true);
-      isValid = false;
-    }
-    if (!password || password.length < 6) {
-      setPasswordInvalid(true);
-      isValid = false;
-    }
+        if (!isValid) {
+            alert('Пожалуйста, введите корректные данные');
+            return;
+        }
 
-    if (!isValid) {
-      alert('Пожалуйста, введите корректные данные');
-      return;
-    }
+        const registrationData = {
+            username,
+            login,
+            phone,
+            email,
+            password,
+        };
 
-    try {
-      const response = await AuthService.register(username, login, phone, email, password);
-      console.log(response);
-      if (response.data.status !== 200) {
-        console.log(response);
-        // alert(response.message);
-        
-      } else {
-        alert('Регистрация прошла успешно!');
-        tagle()
-        window.location.reload()
+        try {
+            const response = await AuthService.register(registrationData);
+            console.log(response);
+            if (response.status !== 200) {
+                console.log(response);
+                alert(response.data.message);
+            } else {
+                console.log('jhgf');
 
+                // Отправляем письмо с ссылкой для подтверждения
+                // const emailData = {
+                //     to: email,
+                //     subject: 'Подтвердите свою учетную запись',
+                //     body: `Для подтверждения учетной записи перейдите по ссылке: ${response.data.activationLink}`,
+                // };
+                // await AuthService.sendConfirmationEmail(emailData);
 
-      }
-    } catch (err) {
-      alert(err.response.message);
-    }
-  };
+                alert(
+                    'Регистрация прошла успешно! На вашу электронную почту отправлено письмо с инструкциями для активации учетной записи.'
+                );
+                tagle();
+                window.location.reload()
+            }
+        } catch (error) {
+            alert(error.response.data.message);
+        }
+    };
 
-  const handleOnChange = (event) => {
-    setName(event.target.value);
-  }; 
-  
-  const handleOnChange4 = (event) => {
-    setLogin(event.target.value);
-  };
-  
-  const isValidPhoneNumber = (number) => {
-    const phoneRegex = /^\+?[1-9]\d{1,14}$/;
-    return phoneRegex.test(number);
-  };
+    const handleOnChange = (event) => {
+        setName(event.target.value);
+    };
+
+    const handleOnChange4 = (event) => {
+        setLogin(event.target.value);
+    };
+
 
   const handleOnChange1 = (event) => {
-    const phone = event.target.value;
-    if (!isValidPhoneNumber(phone)) {
-      setPhone('');
-    } else {
-      setPhone(phone);
-    }
+    setPhone(event.target.value);
   };
 
   const handleOnChange2 = (event) => {
@@ -98,21 +107,21 @@ const Registration = () => {
     setPassword(event.target.value);
   };
 
- 
- 
+
+
 return (
 <>
 <Button  className="btnH" onClick={tagle}>Зарегистрироваться</Button>
 
 
-<Modal 
-  isOpen={toggle} 
+<Modal
+  isOpen={toggle}
   toggle={tagle}
-  style={{
-    
-    }}>
-    <ModalHeader toggle={tagle}  style={{marginBottom: '40px'}}>Регистрация</ModalHeader>
+  color="primary"
+  >
+    <ModalHeader toggle={tagle} >Регистрация</ModalHeader>
   <Form>
+      {/*<Button onClick={()=>AuthService.VkRes()}>VK</Button>*/}
     <FormGroup>
       <Label>Имя</Label>
       <Input className="form"
@@ -133,7 +142,7 @@ return (
         onChange={(event) => handleOnChange4(event)}
         invalid={loginInvalid}
       />
-      {nameInvalid && <div className="invalid-feedback">Имя должно содержать не менее 3 символов</div>}
+      {loginInvalid && <div className="invalid-feedback">Логин должен содержать не менее 3 символов</div>}
     </FormGroup>
     <FormGroup>
   <Label>Номер телефона</Label>
@@ -149,7 +158,7 @@ return (
 
     <FormGroup>
       <Label>Почта</Label>
-      <Input 
+      <Input
         placeholder="Пожалуйста, введите свою почту"
         type="email"
         value={email}
@@ -172,12 +181,20 @@ return (
   </Form>
   <Button  onClick={onRegistration}>Зарегистрироваться</Button>
 
-  <Button style={{marginLeft:'10px'}} onClick={tagle}>
-    Закрыть
-  </Button>
+
+    {/*<Form>*/}
+    {/*    <FormGroup>*/}
+    {/*        <Label>Код активации</Label>*/}
+    {/*        <Input*/}
+    {/*            placeholder="Пожалуйста, введите код активации"*/}
+    {/*            type="text"*/}
+    {/*            value={activationLink}*/}
+    {/*            onChange={(event) => setActivationLink(event.target.value)}*/}
+    {/*        />*/}
+    {/*    </FormGroup>*/}
 </Modal>
   </>
- 
+
 
 )
 }

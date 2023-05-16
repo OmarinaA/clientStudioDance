@@ -1,7 +1,7 @@
 import React from 'react';
 import "./App.css"
 import Carousel from 'react-bootstrap/Carousel';
-import { Link, animateScroll as scroll } from "react-scroll";
+import {Link} from "react-scroll";
 import video from './img/video.mp4'
 const Home = () => {
     return (
@@ -92,30 +92,7 @@ const Home = () => {
 </Carousel>
 </div>
 
-<div>
-        <div className="row">
-          <div className="side">
-            <div className="h2" style={{marginTop: '100px'}}>Контакты</div>
-            <div className="h4" style={{marginTop: '60px'}}>Адрес</div>
-          </div>
-          <div className="text1" style={{marginTop: '10px'}}>ул. Первомайская, 11, Краснодар</div>
-          <div className="text1" style={{marginTop: '5px'}}>ул. studiograce@gmail.com</div>
-          <div className="text1" style={{marginTop: '5px'}}>+ 7 901 140 87 99</div>
         </div>
-        <div className="row" style={{marginLeft: '400px', transform: 'translate(0px, -360px)'}}>
-          <div className="side">
-            <div className="h4" style={{marginTop: '150px'}}>Cоцсети</div>
-            <div className="text1" style={{marginTop: '10px'}}><a href="http://example.com" className="a">Telegram</a></div>
-            <div className="text1" style={{marginTop: '5px'}}><a href="http://example.com" className="a">Instagram</a></div>
-          </div>
-          <div className="main" style={{marginLeft: '330px', marginTop: '-200px'}}>
-            <div className="descriptor">Запишитесь на пробное <p>занятие</p></div>
-            <a href="http://example.com" target="_ blank"><img style={{marginLeft: '390px', marginBottom: '-240px'}} src="C:\Users\user\Desktop\html-css\images\стрелка-кнопка.png" width="30px" alt="..." /> </a>
-            <input type="text" placeholder="email" style={{paddingTop: '100px'}} defaultValue className="some-input" />
-          </div>
-        </div>
-      </div>
-</div>
       );
     }
     export default Home

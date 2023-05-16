@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 // import Modal from 'react-modal';
 import Registration from '../Registration';
 import Login from '../Login';
 import { Button } from 'reactstrap';
 import AuthService from '../services/Auth.service';
+import ProfilePage from '../ProfilePage';
 
 const Header = () => {
-  console.log(localStorage.getItem('user'))
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
   const [toggle, setToggle] = useState(false);
   const [registerModalIsOpen, setRegisterModalIsOpen] = useState(false);
 
@@ -16,7 +17,10 @@ const Header = () => {
     setToggle(!toggle)
   }
 
-  
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem('user')))
+    console.log(user)
+  }, [localStorage.getItem('user')])
 
   return (
     <header>
@@ -36,10 +40,16 @@ const Header = () => {
         <>
         <Registration/>
       <Login/> 
+
         </>
        
-      ): (
-        <Button onClick={(e)=>{AuthService.logout()}} href='/'>Выйти</Button>
+      ): (<>
+      {user.roles[0] === 'ROLE_ADMIN' ? <Button href='/Admin'>Админ-панель</Button> : null}
+      <Button href='/ProfilePage'>Профиль</Button>
+       <Button onClick={(e)=>{AuthService.logout()}} href='/'>Выйти</Button>
+
+      </>
+
       )}
       
       {/* <div className="navbar__right">

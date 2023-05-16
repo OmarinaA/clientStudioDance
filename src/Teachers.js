@@ -6,7 +6,7 @@ const Teachers = () => {
           Преподаватели </div>
         <div className="side"> <div style={{marginTop: '40px'}}>
             <div className="card">
-              <img src={require('./img/kozlova.png')} width="570px" alt="" />
+              <img src={`http://localhost:8081/photo/2`} width="570px" alt="" />
               <div className="overlay">
                 <div className="links">
                 <a href="#"><img src={require('./img/inst.png')} width="40px" alt="" /></a>
@@ -35,7 +35,7 @@ const Teachers = () => {
         <div className="main">
           <div style={{marginTop: '40px'}}>
             <div className="card">
-              <img src={require('./img/katkova.png')} width="570px" alt="" />
+              <img src={`http://localhost:8081/photo/3`} width="570px" alt="" />
               <div className="overlay">
                 <div className="links">
                   <a href="#"><img src={require('./img/inst.png')} width="40px" alt="" /></a>
@@ -49,7 +49,7 @@ const Teachers = () => {
       <div className="row"> 
         <div className="side"> <div style={{marginTop: '40px'}}>
             <div className="card">
-              <img src={require('./img/sobolenko.png')} width="570px" alt="" />
+              <img src={`http://localhost:8081/photo/4`} width="570px" alt="" />
               <div className="overlay">
                 <div className="links">
                 <a href="#"><img src={require('./img/inst.png')} width="40px" alt="" /></a>
@@ -66,30 +66,6 @@ const Teachers = () => {
             <p>Снималась в музыкальных клипах таких исполнителей, как:
               FLESH, Илья Бланко, Султан Ураган.</p>
             <p>Мастер спорта по эстетической гимнастике, выступала в составе сборной РФ.</p></div>  
-        </div>
-      </div>
-      <a className="button" style={{marginLeft: '35%', marginTop: '60px'}} href="file:///C:/Users/user/Desktop/html-css/directions.html" target="_blank">Перейти к направлениям</a> 
-      <div className="main" id="section5">
-        <div className="row">
-          <div className="side">
-            <div className="h2" style={{marginTop: '100px'}}>Контакты</div>
-            <div className="h4" style={{marginTop: '60px'}}>Адрес</div>
-          </div>
-          <div className="text1" style={{marginTop: '10px'}}>ул. Первомайская, 11, Краснодар</div>
-          <div className="text1" style={{marginTop: '5px'}}>ул. studiograce@gmail.com</div>
-          <div className="text1" style={{marginTop: '5px'}}>+ 7 901 140 87 99</div>
-        </div>
-        <div className="row" style={{marginLeft: '400px', transform: 'translate(0px, -360px)'}}>
-          <div className="side">
-            <div className="h4" style={{marginTop: '150px'}}>Cоцсети</div>
-            <div className="text1" style={{marginTop: '10px'}}><a href="http://example.com" className="a">Telegram</a></div>
-            <div className="text1" style={{marginTop: '5px'}}><a href="http://example.com" className="a">Instagram</a></div>
-          </div>
-          <div className="main" style={{marginLeft: '330px', marginTop: '-200px'}}>
-            <div className="descriptor">Запишитесь на пробное <p>занятие</p></div>
-            <a href="http://example.com" target="_ blank"><img style={{marginLeft: '390px', marginBottom: '-240px'}} src="C:\Users\user\Desktop\html-css\images\стрелка-кнопка.png" width="30px" alt="..." /> </a>
-            <input type="text" placeholder="email" style={{paddingTop: '100px'}} defaultValue className="some-input" />
-          </div>
         </div>
       </div>
     </div>
